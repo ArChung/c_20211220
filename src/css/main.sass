@@ -1,0 +1,113 @@
+@import "_functions.sass"
+
+// :root
+//     --swiper-theme-color: #140f4b
+.aniel
+    opacity: 0
+
+.mainContainer
+    --swiper-theme-color: #140f4b
+    width: 100vw
+    height: 100vh
+    background-color: black
+    position: relative
+    display: flex
+    justify-content: center
+    overflow: hidden
+
+    
+    .en
+        display: none
+    &.en
+        .zh
+            display: none
+        .en
+            display: block
+    .mainContent
+        background: white
+        +pc
+            width: 960 / 1440 * 100vh
+            +ratio(960,1440)
+        +phone 
+            width: 100%
+            height: 100%
+        .inner
+            width: 100%
+            height: 100%
+
+
+    .swiper-wrap
+        width: 100%
+        height: 100%
+        .swiper
+            width: 100%
+            height: 100%
+            .swiper-slide
+                width: 100%
+                height: 100%
+                background-size: cover
+
+
+    .swiper-slide
+        padding-left: 40px
+        padding-right: 40px
+        padding-top: 20%
+        overflow: auto
+        @for $i from 1 through 5
+            &.s#{$i}
+                +bgi('bg#{$i}.png')
+
+        > * 
+            @apply mb-8
+             
+        &.s1
+            @for $i from 1 through 6
+                .p#{$i}
+                    +rb('p1-#{$i}.png')
+
+            .p6
+                position: absolute
+                right: 50px
+                bottom: 50px
+        &.s2
+            @for $i from 2 through 4
+                .p#{$i}
+                    +rb('p2-#{$i}.png')
+            @for $i from 3 through 4
+                .p#{$i}-e
+                    +rb('p2-#{$i}-e.png')
+        &.s3
+            @for $i from 1 through 3
+                .p#{$i}
+                    +rb('p3-#{$i}.png')
+            @for $i from 1 through 3
+                .p#{$i}-e
+                    +rb('p3-#{$i}-e.png')
+            
+        &.s4
+            padding-top: 5%
+            @for $i from 1 through 3
+                .p#{$i}
+                    +rb('p4-#{$i}.png')
+            @for $i from 2 through 3
+                .p#{$i}-e
+                    +rb('p4-#{$i}-e.png')
+            .wrap
+                +ratio(1,1)
+                +w(507)
+                @for $i from 1 through 5
+                    .pp#{$i}
+                        +rb('map-#{$i}.png')
+                        width: 100%
+                        position: absolute
+                        top: 0  
+                        left: 0
+
+
+        &.s5
+            @for $i from 1 through 4
+                .p#{$i}
+                    +rb('p5-#{$i}.png')
+            @for $i from 2 through 4
+                .p#{$i}-e
+                    +rb('p5-#{$i}-e.png')

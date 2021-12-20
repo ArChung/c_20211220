@@ -1,0 +1,109 @@
+@import "_images_data.scss"
+
+$pad: 1300px
+$phone: 768px 
+$maxw: 860
+=pad 
+	@media screen and (max-width: $pad)
+		@content 
+=phone 
+	@media screen and (max-width: $phone)
+		@content 
+=pc 
+	@media screen and (min-width: $phone+1)
+		@content 	
+  
+
+.phoneShow 
+	display: none!important
+
+@media screen and (max-width: $phone)
+	.phoneHide 
+		display: none!important
+	.phoneShow 
+		display: block!important
+	.phoneShow.hide
+		display: none!important
+    
+=bg($pic)
+  width: image-width($pic)
+  height: image-height($pic)
+  background-image: image-url($pic)
+
+
+
+=bgi($pic)
+  background-image: image-url($pic)
+
+
+
+=full
+  position: absolute
+  width: 100%
+  height: 100%
+  top: 0
+  left: 0
+
+
+
+=ratio($width, $height)
+	position: relative
+	&:before
+		display: block
+		content: ""
+		width: 100%
+		padding-top: $height / $width * 100%
+	> *
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+
+=dTime($d:0.3s)
+	transition: all $d
+  // display: flex
+
+=coverBg($pic: null)
+  background-size: cover
+  background-position: 50% 50%
+  background-repeat: no-repeat 
+  @if ($pic)
+    +bgi($pic)
+
+
+
+=containBg($pic: null)
+  background-size: contain
+  background-position: 50% 50%
+  background-repeat: no-repeat 
+  @if ($pic)
+    +bgi($pic)
+
+
+
+=rb($pic)
+  +containBg($pic)
+  +ratio(image-width($pic),image-height($pic))
+  max-width: 100%
+  +wp($pic)
+  
+=wp($pic)
+  width: strip-units(image-width($pic)) / $maxw  * 100%
+
+=w($w)
+  width: $w / $maxw  * 100%
+
+=ratioChildBgs($class,$pic,$num)
+  position: relative
+  @for $var from 1 through $num
+    #{$class}#{$var}
+      +rb('#{$pic}#{$var}.png')
+      position: absolute
+      width: 100%
+      // height: 100%
+      &:not(:first-child)
+        +full
+
+@function strip-units($number) 
+  @return $number / ($number * 0 + 1)
